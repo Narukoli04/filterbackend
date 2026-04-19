@@ -10,21 +10,22 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/scores")
-@CrossOrigin("*")
+//@CrossOrigin("*")
 public class ScoreController {
 
     @Autowired
     private ScoreService scoreService;
     @Autowired
     private JwtUtil jwtUtil;
-
     @PostMapping
     public Score addScore(@RequestBody Score score,
-                          @RequestHeader("Authorization")String token)
-    {
-        String email = token.substring(7);
-        String userEmail=jwtUtil.extractEmail(email);
-        score.setUserEmail(userEmail);
+                          @RequestHeader("Authorization") String token) {
+
+        String jwt = token.substring(7);
+        String email = jwtUtil.extractEmail(jwt);
+
+        score.setUserEmail(email);
+
         return scoreService.addScore(score);
     }
 

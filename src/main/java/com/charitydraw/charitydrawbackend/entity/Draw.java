@@ -1,27 +1,39 @@
 package com.charitydraw.charitydrawbackend.entity;
 
 import jakarta.persistence.*;
+import java.time.LocalDate;
 
 @Entity
+@Table(name = "draw")
 public class Draw {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String winnerEmail;
-    private int score;
-    private String date;
+    @Column(name = "numbers")
+    private String numbers;
 
-    // getters setters
-    public Long getId() { return id; }
+    @Column(name = "date")
+    private LocalDate date;
 
-    public String getWinnerEmail() { return winnerEmail; }
-    public void setWinnerEmail(String winnerEmail) { this.winnerEmail = winnerEmail; }
+    public Long getId() {
+        return id;
+    }
 
-    public int getScore() { return score; }
-    public void setScore(int score) { this.score = score; }
+    public String getNumbers() {
+        return numbers;
+    }
 
-    public String getDate() { return date; }
-    public void setDate(String date) { this.date = date; }
+    public void setNumbers(String numbers) {
+        this.numbers = numbers;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
 }
